@@ -29,7 +29,8 @@ public class frmCuve extends javax.swing.JFrame {
      DefaultTableModel dtmCuves;
      DefaultTableModel dtmCarburant;
      Cuve maCuve;
-    // ArrayList <Cuve> lesCuves;
+     Carburant carburant;
+
      GestionnairesCuves gestion;
     //  public ArrayList<Carburant>
      
@@ -50,6 +51,13 @@ public class frmCuve extends javax.swing.JFrame {
         tblCuve = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblCarburant = new javax.swing.JTable();
+        txtNumero = new javax.swing.JTextField();
+        txtNom = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtPrix = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        btnModifier = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -97,7 +105,20 @@ public class frmCuve extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblCarburant.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCarburantMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblCarburant);
+
+        jLabel1.setText("Numero");
+
+        jLabel2.setText("Nom ");
+
+        jLabel3.setText("Prix");
+
+        btnModifier.setText("MODIFIER");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,19 +126,53 @@ public class frmCuve extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
+                    .addComponent(jScrollPane2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPrix, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(114, 114, 114)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnModifier, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(77, 77, 77)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(294, Short.MAX_VALUE))
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel3)
+                                .addComponent(txtPrix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(31, 31, 31))))
+                    .addComponent(btnModifier, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE))
+                .addGap(191, 191, 191))
         );
 
         pack();
@@ -141,6 +196,10 @@ public class frmCuve extends javax.swing.JFrame {
         c1.ajouterCarburant(s1); 
         c2.ajouterCarburant(s2); 
         c3.ajouterCarburant(s3);
+        
+        gestion.ajouterCuves(c1);
+        gestion.ajouterCuves(c2);
+        gestion.ajouterCuves(c3);
         
         
         Vector v = new Vector();
@@ -174,6 +233,8 @@ public class frmCuve extends javax.swing.JFrame {
             dtmCarburant.removeRow(0);
         }
          
+      
+         
         for(Carburant c : gestion.getLesCuves().get(tblCuve.getSelectedRow()).getLesCarburants())
                                
         {
@@ -190,6 +251,37 @@ public class frmCuve extends javax.swing.JFrame {
           
           
     }//GEN-LAST:event_tblCuveMouseClicked
+
+    private void tblCarburantMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCarburantMouseClicked
+        // TODO add your handling code here:
+        //JOptionPane.showMessageDialog(this,"unununu" );
+       
+       // for (Carburant c : maCuve.getLesCarburants().get(tblCarburant.getSelectedRow()))
+      
+      carburant.setIdCarburant(Integer.parseInt(txtNumero.getText()));
+  
+      carburant.setPrixCarburant(Integer.parseInt(txtPrix.getText()));
+       
+       for(Carburant c : gestion.getLesCuves().get(tblCuve.getSelectedRow()).getLesCarburants())
+        {
+        Vector v = new Vector();   
+        v.add(c.getIdCarburant());
+       
+        
+       v.add(txtNumero);
+       
+        }    
+       for(Carburant c : gestion.getLesCuves().get(tblCuve.getSelectedRow()).getLesCarburants())
+        {
+        Vector v2 = new Vector();   
+        v2.add(c.getNomCarburant());
+       
+        
+       v2.add(txtNom);
+       
+        }    
+        
+    }//GEN-LAST:event_tblCarburantMouseClicked
 
     
     
@@ -229,9 +321,16 @@ public class frmCuve extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnModifier;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblCarburant;
     private javax.swing.JTable tblCuve;
+    private javax.swing.JTextField txtNom;
+    private javax.swing.JTextField txtNumero;
+    private javax.swing.JTextField txtPrix;
     // End of variables declaration//GEN-END:variables
 }

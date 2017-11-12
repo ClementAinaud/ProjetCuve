@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author cleme
  */
-public class Cuve {
+public class Cuve extends GestionnairesCuves {
    
   private  int idCuve;
   private  String nomCuve;

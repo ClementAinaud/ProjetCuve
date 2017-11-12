@@ -9,7 +9,7 @@ package Classes;
  *
  * @author cleme
  */
-public class Carburant {
+public class Carburant extends Cuve{
     
     private int idCarburant;
     private String nomCarburant;

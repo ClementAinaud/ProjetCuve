@@ -15,11 +15,13 @@ public class GestionnairesCuves {
  
     private ArrayList <Cuve> lesCuves;
     
+    
     // controlleur
     
      
     public GestionnairesCuves() {
         lesCuves = new ArrayList<Cuve>();
+       
     }
     //2 eme controlleur vide
    public void ajouterCuves(Cuve uneCuve)
