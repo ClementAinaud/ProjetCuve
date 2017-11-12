@@ -258,28 +258,36 @@ public class frmCuve extends javax.swing.JFrame {
        
        // for (Carburant c : maCuve.getLesCarburants().get(tblCarburant.getSelectedRow()))
       
-      carburant.setIdCarburant(Integer.parseInt(txtNumero.getText()));
+       
+      //carburant.setIdCarburant(Integer.parseInt(txtNumero.getText()));
   
-      carburant.setPrixCarburant(Integer.parseInt(txtPrix.getText()));
-       
-       for(Carburant c : gestion.getLesCuves().get(tblCuve.getSelectedRow()).getLesCarburants())
-        {
-        Vector v = new Vector();   
-        v.add(c.getIdCarburant());
-       
-        
-       v.add(txtNumero);
-       
-        }    
-       for(Carburant c : gestion.getLesCuves().get(tblCuve.getSelectedRow()).getLesCarburants())
-        {
-        Vector v2 = new Vector();   
-        v2.add(c.getNomCarburant());
-       
-        
-       v2.add(txtNom);
-       
-        }    
+      // C'est l'inverse
+      
+      txtNumero.setText(tblCarburant.getValueAt(tblCarburant.getSelectedRow(), 0).toString());
+      txtNom.setText(tblCarburant.getValueAt(tblCarburant.getSelectedRow(), 1).toString());
+      txtPrix.setText(tblCarburant.getValueAt(tblCarburant.getSelectedRow(), 2).toString());
+      
+      
+//      carburant.setPrixCarburant(Integer.parseInt(txtPrix.getText()));
+//       
+//       for(Carburant c : gestion.getLesCuves().get(tblCuve.getSelectedRow()).getLesCarburants())
+//        {
+//        Vector v = new Vector();   
+//        v.add(c.getIdCarburant());
+//       
+//        
+//       v.add(txtNumero);
+//       
+//        }    
+//       for(Carburant c : gestion.getLesCuves().get(tblCuve.getSelectedRow()).getLesCarburants())
+//        {
+//        Vector v2 = new Vector();   
+//        v2.add(c.getNomCarburant());
+//       
+//        
+//       v2.add(txtNom);
+//       
+//        }    
         
     }//GEN-LAST:event_tblCarburantMouseClicked
 
